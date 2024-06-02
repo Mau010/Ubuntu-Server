@@ -134,3 +134,4 @@ o	Para logar, utilize a conta criada no MySQL.
 o	No phpMyAdmin, você pode configurar tabelas, bancos de dados e gerenciar tudo pela interface gráfica.
 12. Conclusão
 Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
+
