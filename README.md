@@ -151,6 +151,9 @@ sudo apt-get install php libapache2-mod-php php-mysql
 ```
 sudo systemctl restart apache2
 ```
+
+#BAIXAR PHP MYADMIN
+
 ##### 10.3. Testar a Instalação do PHP
 ###### 10.3.1. Criar um Arquivo PHP de Teste
 - Utilize o terminal ou o WinSCP para criar um arquivo chamado `info.php` no diretório `/var/www/html/` com o seguinte conteúdo:
