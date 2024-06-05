@@ -152,8 +152,6 @@ sudo apt-get install php libapache2-mod-php php-mysql
 sudo systemctl restart apache2
 ```
 
-#BAIXAR PHP MYADMIN
-
 ##### 10.3. Testar a Instalação do PHP
 ###### 10.3.1. Criar um Arquivo PHP de Teste
 - Utilize o terminal ou o WinSCP para criar um arquivo chamado `info.php` no diretório `/var/www/html/` com o seguinte conteúdo:
@@ -166,11 +164,14 @@ phpinfo();
 - No navegador web, acesse http://<IP_da_VM>/info.php. Você deve ver a página de informações do PHP, confirmando que o PHP está instalado e funcionando corretamente.
 
 ---
+# ⚠️⚠️BAIXAR PHP MYADMIN
 
 ### 11.	ACESSAR PHPMYADMIN:
 - No navegador, acesse `http://<IP_da_VM>/phpmyadmin`
 - Para logar, utilize a conta criada no MySQL.
 - No phpMyAdmin, você pode configurar tabelas, bancos de dados e gerenciar tudo pela interface gráfica.
+
+# ⚠️⚠️WORDPRESS CONF...
 
 ### 12. CONCLUSÃO
 Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
