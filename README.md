@@ -176,3 +176,172 @@ phpinfo();
 ### 12. CONCLUSÃO
 Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
 
+
+
+
+# INSTALAÇÃO E CONFIGURAÇÃO DO WORDPRESS
+
+
+
+Passo 3. Configure o MySQL e Crie um Nanco de Dados
+Uma vez que o Apache esteja funcionando, o próximo passo é instalar o banco de dados MySQL. Para fazer isso, execute o seguinte comando:
+
+apt install mysql-server -y
+Será necessário digitar sua senha. Para completar a instalação, pressione Y e Enter quando solicitado.
+
+Depois de instalar o MySQL em seu VPS, abra o terminal MySQL digitando o seguinte comando:
+
+sudo mysql
+Defina a senha para a conta raiz do MySQL usando este comando:
+
+Plain text
+Copy to clipboard
+Open code in new window
+EnlighterJS 3 Syntax Highlighter
+mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH
+mysql_native_password BY ‘SUA SENHA’;
+mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ‘SUA SENHA’;
+mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH
+mysql_native_password BY ‘SUA SENHA’;
+Certifique-se de digitar uma senha de root MySQL forte no lugar de SUA SENHA.
+
+Para implementar estas mudanças, execute o comando flush:
+
+mysql> FLUSH PRIVILEGES;
+Use o seguinte comando para criar um banco de dados WordPress:
+
+mysql> CREATE DATABASE WordPressDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+Agora, vamos criar uma conta de usuário MySQL para operar no novo banco de dados WordPress. Vamos usar o WordPressDB como nome do banco de dados e o testehostinger como nome de usuário:
+
+GRANT ALL ON WordPressDB.* TO 'testehostinger'@'localhost' IDENTIFIED BY 'novasenha’;
+Certifique-se de digitar uma senha forte no lugar de novasenha. Feito isso, faça o flush dos privilégios para que o MySQL implemente as mudanças.
+
+mysql> FLUSH PRIVILEGES;
+Finalmente, saia do MySQL digitando este comando:
+
+mysql> EXIT;
+Passo 4. Prepare a Instalação do WordPress no Ubuntu
+É hora de preparar a instalação do WordPress criando um arquivo de configuração do CMS e um diretório WordPress.
+
+Criando um arquivo WordPress.confComece criando um arquivo de configuração para Apache chamado WordPress.conf no diretório /etc/apache2/sites-available. Use o seguinte comando:
+
+nano /etc/apache2/sites-available/WordPress.conf
+Importante! Tenha em mente que os nomes de arquivos e locais são sensíveis a maiúsculas e minúsculas no Linux.
+
+Uma vez executado esse comando, você chegará ao editor de texto Nano para editar o arquivo WordPress.conf. Habilite .htaccess adicionando estas linhas ao bloco VirtualHost:
+
+Plain text
+Copy to clipboard
+Open code in new window
+EnlighterJS 3 Syntax Highlighter
+<Directory /var/www/wordpress/>
+AllowOverride All
+</Directory>
+<Directory /var/www/wordpress/> AllowOverride All </Directory>
+<Directory /var/www/wordpress/>
+   AllowOverride All
+</Directory>
+Feche e salve o arquivo pressionando CTRL+X. Aperte Y e Enter quando solicitado.
+
+Criando um Diretório WordPress
+
+Em seguida, crie um diretório WordPress em /var/wwww/. Em nosso exemplo, seu caminho completo será em /var/wwww/wwwpress. Para isso, use o comando mkdir para criar o diretório:
+
+mkdir /var/wwww/wwwpress
+Agora, habilite o mod_rewrite para usar o recurso permalink do WordPress executando o seguinte comando no terminal:
+
+sudo a2enmod reescrever
+Você terá que reiniciar o servidor web Apache usando o seguinte comando:
+
+systemctl restart apache2
+O próximo passo é mudar a diretiva ServerName no arquivo /etc/apache2/apache2.conf. Abra o arquivo usando este comando:
+
+nano /etc/apache2/apache2.conf
+Você terá que configurar a diretiva ServerName para o endereço de IP ou hostname do servidor adicionando a seguinte linha ao arquivo /etc/apache2/apache2.conf:
+
+ServerName <Seu endereço de IP>
+Feche e salve o arquivo.
+
+Agora, você tem que verificar se a configuração do Apache está correta, executando o seguinte comando no terminal:
+
+apachectl configtest
+Se a configuração funcionar bem, ela deverá imprimir a seguinte saída:
+
+Syntax OK
+Saída: Janela que indica que a sintaxe está OK
+Passo 5. Download e Configuração do WordPress
+Depois de todos os preparativos, é hora de instalar o WordPress. Há dois métodos – configurar o WordPress via interface web ou editar manualmente o arquivo wp-config.php.
+
+Método 1. Configuração do WordPress Através de um Navegador
+Primeiro, instale o pacote wget em seu VPS. Isto será útil para baixar arquivos do CMS. Execute este comando na linha de comando:
+
+sudo apt install wget -y
+Em seguida, use o comando wget seguido do link para download do WordPress:
+
+wget https://wordpress.org/latest.zip
+Uma vez que você tenha baixado o arquivo, instale o utilitário de descompactação usando estes comandos:
+
+Plain text
+Copy to clipboard
+Open code in new window
+EnlighterJS 3 Syntax Highlighter
+ls
+sudo apt install unzip -y
+ls sudo apt install unzip -y
+ls
+sudo apt install unzip -y
+Agora você terá que mover o arquivo para o diretório correto antes de descompactá-lo. Use o comando:
+
+mv latest.zip /var/www/html
+Então, navegue até o diretório e descompacte o arquivo usando estes comandos:
+
+cd /var/www/html
+unzip latest.zip
+Depois disso, use o seguinte comando para mover o diretório:
+
+mv -f wordpress/* ./
+O último passo é remover o index.html. Use este comando aqui:
+
+sudo rm -rf index.html
+Você pode usar o comando ls para verificar se o arquivo index.html foi removido. Uma vez que tiver feito isso, reinicie o Apache usando estes comandos:
+
+sudo systemctl restart apache2
+sudo chown -R www-data:www-data /var/wwww/
+Finalize o processo configurando o WordPress através de um navegador. Abra seu navegador preferido e digite o endereço de IP do servidor. Os seguintes passos serão similares a uma configuração padrão do WordPress.
+
+Primeiro, selecione um idioma para WordPress e clique em Continuar.
+
+Configuração WordPress - escolha do idioma.
+Uma mensagem de boas-vindas do WordPress aparecerá listando as informações de que você precisará para completar a configuração. Clique no botão Let’s go! (Vamos lá!) para continuar.
+
+Mensagem de bem-vindo ao WordPress - destacando o botão "Let's go" (Vamos Lá)
+Ele o levará para a página principal de configuração. Preencha os seguintes detalhes:
+
+Nome do banco de dados – digite o nome que você configurou ao configurar o banco de dados WordPress. Neste caso, será WordPressDB.
+Nome de usuário – digite o nome de usuário MySQL que você configurou para o banco de dados antes.
+Senha – insira a senha que você criou para o usuário do banco de dados.
+Host do banco de dados – mantenha aqui o valor padrão do localhost.
+Prefixo da tabela – deixar wp_ neste campo.
+Clique em Submeter para continuar.
+
+Página de configuração do WordPress mostrando o formulário para detalhes de conexão ao banco de dados
+Uma nova mensagem aparecerá dizendo que o WordPress agora pode se comunicar com seu banco de dados. Clique em Executar a instalação.
+
+Mensagem WordPress informando que a conexão ao banco de dados foi bem sucedida
+Depois disso, você terá que inserir mais algumas informações:
+
+Título do site – digite o nome do site WordPress. Para otimizar seu site, recomendamos que insira seu nome de domínio.
+Nome de usuário – crie um novo nome de usuário que você usará para fazer o login no WordPress.
+Senha – crie uma senha para o usuário do WordPress.
+Seu e-mail – adicione o endereço de e-mail para atualizações e notificações.
+Visibilidade dos motores de busca – deixe esta caixa desmarcada se você não quiser que os motores de busca indexem seu site até que ele esteja pronto.
+Clique no botão Install WordPress (Instalar WordPress) para começar a instalação de fato.
+
+Página de configuração do WordPress - formulário de instalação
+Uma mensagem de sucesso aparecerá junto com um botão de login. Você pode acessar o WordPress diretamente desta página.
+
+Mensagem de sucesso WordPress foi instalado
+Uma vez logado, você será levado ao painel de administração do WordPress. Agora você pode começar a customizar o site instalando plugins e temas WordPress.
+
+Se seu site WordPress ainda não tem um nome de domínio, compre um e aponte o domínio para o VPS antes de tornar o site público.
+
