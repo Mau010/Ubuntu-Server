@@ -171,19 +171,12 @@ phpinfo();
 - Para logar, utilize a conta criada no MySQL.
 - No phpMyAdmin, você pode configurar tabelas, bancos de dados e gerenciar tudo pela interface gráfica.
 
-# ⚠️⚠️WORDPRESS CONF...
 
-### 12. CONCLUSÃO
-Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
+### 12. INSTALAÇÃO E CONFIGURAÇÃO DO WORDPRESS
 
 
 
-
-# INSTALAÇÃO E CONFIGURAÇÃO DO WORDPRESS
-
-
-
-Passo 3. Configure o MySQL e Crie um Nanco de Dados
+Passo 1. Configure o MySQL e Crie um Nanco de Dados
 Uma vez que o Apache esteja funcionando, o próximo passo é instalar o banco de dados MySQL. Para fazer isso, execute o seguinte comando:
 
 apt install mysql-server -y
@@ -194,15 +187,14 @@ Depois de instalar o MySQL em seu VPS, abra o terminal MySQL digitando o seguint
 sudo mysql
 Defina a senha para a conta raiz do MySQL usando este comando:
 
-Plain text
-Copy to clipboard
-Open code in new window
-EnlighterJS 3 Syntax Highlighter
+```
 mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH
 mysql_native_password BY ‘SUA SENHA’;
 mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ‘SUA SENHA’;
 mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH
 mysql_native_password BY ‘SUA SENHA’;
+```
+
 Certifique-se de digitar uma senha de root MySQL forte no lugar de SUA SENHA.
 
 Para implementar estas mudanças, execute o comando flush:
@@ -344,4 +336,8 @@ Mensagem de sucesso WordPress foi instalado
 Uma vez logado, você será levado ao painel de administração do WordPress. Agora você pode começar a customizar o site instalando plugins e temas WordPress.
 
 Se seu site WordPress ainda não tem um nome de domínio, compre um e aponte o domínio para o VPS antes de tornar o site público.
+
+### 12. CONCLUSÃO
+Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
+
 
