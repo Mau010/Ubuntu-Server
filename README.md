@@ -337,6 +337,9 @@ Uma vez logado, você será levado ao painel de administração do WordPress. Ag
 
 Se seu site WordPress ainda não tem um nome de domínio, compre um e aponte o domínio para o VPS antes de tornar o site público.
 
+
+### (istalação pela interface grafica do phpmyadmin) [https://www.youtube.com/watch?v=PYrcdNfhyzU&list=WL&index=4&t=730s]
+
 ### 12. CONCLUSÃO
 Com esses passos, você terá configurado um servidor Ubuntu com Apache, MySQL e PHP. Agora, você está pronto para hospedar seus aplicativos web. Certifique-se de manter o sistema atualizado e de configurar corretamente as permissões de segurança para garantir a proteção do seu servidor.
 
